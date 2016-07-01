@@ -1,0 +1,40 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Ingreso <!--&aacute;-->
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="login" padding>
+  <ion-card [hidden]="isLoggedIn">
+  <hr/>
+    <ion-card-content>
+   <form #loginCreds="ngForm">
+       <ion-item>
+           <ion-label>Usuario</ion-label>
+           <ion-input type="text" ngControl="email"></ion-input>
+       </ion-item>
+
+       <ion-item>
+           <ion-label>Password</ion-label>
+           <ion-input type="password" ngControl="password"></ion-input>
+       </ion-item>
+
+       <div padding>
+           <button block (click)="login(loginCreds.value, $event)">Ingresar</button>
+           <button block (click)="resetPassword(loginCreds.value, $event)">Recuperar contraseña</button>
+           <button block (click)="registerUser(loginCreds.value, $event)">Crear Cuenta</button>
+        </div>
+       <div padding>
+           <button block (click)="loginFacebook($event)">Conectar con Facebook</button>
+           <button block (click)="loginSocial(loginCreds.value, $event,2)">Conectar con Twitter</button>
+           <button block (click)="loginSocial(loginCreds.value, $event,3)">Conectar con Google</button>
+          <!--button block (click)="dismiss()">Anonimo</button-->
+       </div>
+       <div padding>
+           <p *ngIf="error" class="error">Error:&nbsp;{{ error.code }}</p>
+       </div>
+   </form>
+   </ion-card-content>
+  </ion-card>
+
+</ion-content>
